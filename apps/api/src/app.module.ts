@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NameModule } from './name/name.module';
 import { ConfigModule } from '@nestjs/config';
+import { SecurityPosture } from '../models/security-posture.model';
 
 const PORT = 3306;
 
@@ -21,6 +22,7 @@ const PORT = 3306;
       database: 'app_db', // process.env.DB_DATABASE,
       autoLoadModels: true,
       synchronize: true,
+      models: [SecurityPosture],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
