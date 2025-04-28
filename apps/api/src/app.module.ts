@@ -10,6 +10,8 @@ import { SecurityPosture } from '../models/security-posture.model';
 import { SecurityPostureModule } from './security-posture/security-posture.module';
 import { Client } from 'models/client.model';
 import { ClientModule } from './client/client.module';
+import { VulnerabilityModule } from './vulnerability/vulnerability.module';
+import { Vulnerability } from 'models/vulnerability.model';
 
 const PORT = 3306;
 
@@ -25,7 +27,7 @@ const PORT = 3306;
       database: 'app_db', // process.env.DB_DATABASE,
       autoLoadModels: true,
       synchronize: true,
-      models: [Client, SecurityPosture],
+      models: [Client, SecurityPosture, Vulnerability],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
@@ -35,6 +37,7 @@ const PORT = 3306;
     NameModule,
     SecurityPostureModule,
     ClientModule,
+    VulnerabilityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

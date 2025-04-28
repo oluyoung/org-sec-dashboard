@@ -1,12 +1,12 @@
 import { ClientService } from './client.service';
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Headers } from '@nestjs/common';
 
 @Controller('api/clients')
 export class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
-  @Get(':clientId')
-  findOne(@Param('clientId') clientId: string) {
+  @Get('me')
+  findOne(@Headers('X-CLIENT-ID') clientId: string) {
     return this.clientService.findClient(clientId);
   }
 }
