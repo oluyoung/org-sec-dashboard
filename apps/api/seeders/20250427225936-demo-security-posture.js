@@ -21,7 +21,9 @@ module.exports = {
       riskScore: faker.number.int({ min: 0, max: 100 }),
       vulnerabilitiesFound: faker.number.int({ min: 0, max: 20 }),
       incidentsReported: faker.number.int({ min: 0, max: 10 }),
-      reportDate: faker.date.recent(30)
+      reportDate: faker.date.recent(30),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }));
 
     await queryInterface.bulkInsert('SecurityPostures', postures, {});

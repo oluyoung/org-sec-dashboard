@@ -9,7 +9,7 @@ export default function SummaryGrid({
   incidentsReported = 0,
   lastScanDate,
   reportDate,
-}: SecurityPosture) {
+}: Partial<SecurityPosture>) {
 
   const gridItems = [
     { label: 'Risk Score', value: riskScore },
@@ -17,11 +17,11 @@ export default function SummaryGrid({
     { label: 'Vulnerabilities Found', value: vulnerabilitiesFound },
     { label: 'Incidents Reported', value: incidentsReported },
     { label: 'Last Scan Date', value: lastScanDate ? new Date(lastScanDate).toLocaleDateString() : '' },
-    { label: 'Report Date', value: lastScanDate ? new Date(reportDate).toLocaleDateString() : '' },
+    { label: 'Report Date', value: reportDate ? new Date(reportDate).toLocaleDateString() : '' },
   ];
 
   return (
-    <SimpleGrid columns={{ base: 1, md: 3 }} gap="8px" mb="8">
+    <SimpleGrid columns={{ base: 1, md: 3, xl: 6 }} gap="8px" mb="8">
       {gridItems.map((item) => (
         <Box
           key={item.label}

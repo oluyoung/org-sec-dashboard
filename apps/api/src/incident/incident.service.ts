@@ -10,6 +10,10 @@ export class IncidentService {
   ) {}
 
   async findByClientId(clientId: string): Promise<Incident[]> {
-    return this.incidentModel.findAll({ where: { clientId } });
+    return await this.incidentModel.findAll({
+      where: { clientId },
+      raw: true,
+      nest: true,
+    });
   }
 }

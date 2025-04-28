@@ -11,29 +11,23 @@ export class SecurityPostureService {
     private readonly securityPostureModel: typeof SecurityPosture,
   ) {}
 
-  // create(createSecurityPostureDto: CreateSecurityPostureDto) {
-  //   return 'This action adds a new securityPosture';
-  // }
-
   async findByClientId(clientId: string): Promise<SecurityPosture> {
     const securityPosture = await this.securityPostureModel.findOne({
       where: { clientId },
+      raw: true,
+      nest: true,
     });
-    console.log('--securityPosture', securityPosture)
+
     if (!securityPosture) {
       throw new NotFoundException(
         `Security Posture for clientId '${clientId}' not found.`,
       );
     }
 
-    return securityPosture.dataValues as SecurityPosture;
+    return securityPosture;
   }
 
   // update(id: number, updateSecurityPostureDto: UpdateSecurityPostureDto) {
   //   return `This action updates a #${id} securityPosture`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} securityPosture`;
   // }
 }

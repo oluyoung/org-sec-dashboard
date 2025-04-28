@@ -10,6 +10,6 @@ export class IncidentResolver {
   async getIncidentsByClientId(
     @Args('clientId') clientId: string,
   ): Promise<Incident[]> {
-    return this.incidentService.findByClientId(clientId);
+    return await this.incidentService.findByClientId(clientId);
   }
 }

@@ -1,9 +1,16 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import {
+  Table,
+  Column,
+  Model,
+  DataType,
+  PrimaryKey,
+} from 'sequelize-typescript';
 
 @ObjectType()
 @Table
 export class Client extends Model {
+  @PrimaryKey
   @Column({
     primaryKey: true,
     type: DataType.UUID,

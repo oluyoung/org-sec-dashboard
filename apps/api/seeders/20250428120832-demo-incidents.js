@@ -13,11 +13,12 @@ module.exports = {
 
     const clientId = clients[0].clientId;
 
-    const incidents = Array.from({ length: 10 }, () => ({
+    const incidents = Array.from({ length: 100 }, () => ({
       clientId: clientId,
       title: faker.lorem.words(3),
       description: faker.lorem.paragraph(),
-      severity: faker.helpers.arrayElement(['Low', 'Medium', 'High', 'Critical']),
+      status: faker.helpers.arrayElement(['closed', 'open', 'progress']),
+      severity: faker.helpers.arrayElement(['low', 'medium', 'high', 'critical']),
       reportedAt: faker.date.past(),
       createdAt: new Date(),
       updatedAt: new Date(),

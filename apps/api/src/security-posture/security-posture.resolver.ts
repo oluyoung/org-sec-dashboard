@@ -10,6 +10,6 @@ export class SecurityPostureResolver {
   async getSecurityPosture(
     @Args('clientId') clientId: string,
   ): Promise<SecurityPosture> {
-    return this.postureService.findByClientId(clientId);
+    return await this.postureService.findByClientId(clientId);
   }
 }

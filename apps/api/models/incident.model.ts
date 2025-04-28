@@ -24,6 +24,10 @@ export class Incident extends Model {
   @Field({ nullable: false })
   description: string;
 
+  @Column({ allowNull: false, defaultValue: 'open' })
+  @Field({ nullable: false })
+  status: string;
+
   @Column({ allowNull: false })
   @Field({ nullable: false })
   severity: string;

@@ -17,12 +17,14 @@ module.exports = {
         type: DataTypes.STRING,
       },
       createdAt: {
+        allowNull: false,
         type: DataTypes.DATE,
-        defaultValue: Sequelize.NOW
+        defaultValue: DataTypes.NOW
       },
       updatedAt: {
+        allowNull: false,
         type: DataTypes.DATE,
-        defaultValue: Sequelize.NOW
+        defaultValue: DataTypes.NOW
       }
     });
   },

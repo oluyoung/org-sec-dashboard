@@ -5,19 +5,21 @@ const { DataTypes } = require('sequelize');
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('SecurityPostures', {
-      postureId: {
+      id: {
         allowNull: false,
-        type: DataTypes.UUID,
+        autoIncrement: true,
         primaryKey: true,
-        defaultValue: Sequelize.literal('(UUID())'),
+        type: DataTypes.INTEGER,
       },
       clientId: {
-        allowNull: false,
         type: DataTypes.UUID,
+        allowNull: false,
         references: {
           model: 'Clients',
-          key: 'clientId'
-        }
+          key: 'clientId',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       lastScanDate: {
         type: DataTypes.DATE,
@@ -44,10 +46,12 @@ module.exports = {
         allowNull: true,
       },
       createdAt: {
+        allowNull: false,
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       },
       updatedAt: {
+        allowNull: false,
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW
       }

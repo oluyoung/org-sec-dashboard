@@ -4,6 +4,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import Footer from '@/components/Footer';
+import { Toaster } from '@/components/chakra/toaster';
 
 export default function Layout({ children }: PropsWithChildren) {
   return (
@@ -15,6 +16,7 @@ export default function Layout({ children }: PropsWithChildren) {
           {children}
         </Box>
       </Flex>
+      <Toaster />
       <Footer />
     </Flex>
   )

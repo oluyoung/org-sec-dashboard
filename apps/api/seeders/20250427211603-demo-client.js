@@ -8,6 +8,8 @@ module.exports = {
       clientId: faker.string.uuid(),
       organisationName: faker.company.name(),
       contactEmail: faker.internet.email(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }));
 
     await queryInterface.bulkInsert('Clients', clients);
