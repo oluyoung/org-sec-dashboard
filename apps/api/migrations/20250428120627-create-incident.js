@@ -3,7 +3,13 @@ const { DataTypes } = require('sequelize');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Vulnerabilities', {
+    await queryInterface.createTable('Incidents', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER,
+      },
       clientId: {
         type: DataTypes.UUID,
         allowNull: false,
@@ -18,19 +24,15 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
       severity: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      cvssScore: {
-        type: DataTypes.FLOAT,
-        allowNull: false,
-      },
-      remediationSteps: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      foundAt: {
+      reportedAt: {
         type: DataTypes.DATE,
         allowNull: false,
       },
@@ -48,6 +50,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Vulnerabilities');
+    await queryInterface.dropTable('Incidents');
   }
 };

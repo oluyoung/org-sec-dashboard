@@ -12,6 +12,7 @@ import { Client } from 'models/client.model';
 import { ClientModule } from './client/client.module';
 import { VulnerabilityModule } from './vulnerability/vulnerability.module';
 import { Vulnerability } from 'models/vulnerability.model';
+import { IncidentModule } from './incident/incident.module';
 
 const PORT = 3306;
 
@@ -38,6 +39,7 @@ const PORT = 3306;
     SecurityPostureModule,
     ClientModule,
     VulnerabilityModule,
+    IncidentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

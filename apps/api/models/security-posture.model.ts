@@ -8,6 +8,7 @@ export class SecurityPosture extends Model {
   @Column({
     primaryKey: true,
     type: DataType.UUID,
+    allowNull: false,
     references: {
       model: Client,
       key: 'clientId',
