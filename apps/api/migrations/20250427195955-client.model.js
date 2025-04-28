@@ -1,4 +1,5 @@
 'use strict';
+const { DataTypes } = require('sequelize');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -6,16 +7,23 @@ module.exports = {
       clientId: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.literal('(UUID())'),
+        type: DataTypes.UUID,
       },
       organisationName: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       contactEmail: {
-        type: Sequelize.STRING,
+        type: DataTypes.STRING,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+        defaultValue: Sequelize.NOW
+      }
     });
   },
 
