@@ -12,7 +12,7 @@ export default function Layout({ children }: PropsWithChildren) {
       <Header />
       <Flex as="div" flex="1" p="8">
         <Sidebar />
-        <Box as="main" flex="1" p="6" m="auto" maxWidth="1268px">
+        <Box as="main" flex="1" p="6" m="0 auto" maxWidth="1268px">
           {children}
         </Box>
       </Flex>
