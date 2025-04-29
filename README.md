@@ -7,8 +7,6 @@ It simulates an organisations's cybersecurity dashboard displaying:
 - Incident reports
 - Vulnerabilities detected
 
----
-
 # Technologies Used
 
 | Stack            | Details |
@@ -19,9 +17,6 @@ It simulates an organisations's cybersecurity dashboard displaying:
 | Database         | [MySQL 8](https://hub.docker.com/_/mysql) |
 | Containerization | [Docker](https://www.docker.com/) + [Docker Compose](https://docs.docker.com/compose/) |
 
-
----
-
 # How to Run Locally
 
 ### 1. Clone the repository
@@ -31,8 +26,6 @@ git clone https://github.com/oluyoung/org-sec-dashboard.git
 cd org-sec-dashboard
 ```
 
----
-
 ### 2. Install all project dependencies
 
 ```bash
@@ -40,42 +33,25 @@ cd `apps/web` && npm install
 cd `apps/api` && npm install
 ```
 
-
----
-
 ### 3. Start Local Docker Services (MySQL)
 
 ```bash
 docker-compose up --build
 ```
 
-This command will:
-
-- Start the NestJS API on `http://localhost:4000`
-- Start the Next.js frontend on `http://localhost:3000`
-- Start MySQL database on `localhost:3306`
-
----
-
 ### 5. Run Migrations & Seeders
 
-Open a terminal inside the `apps/api` directory and run:
+Open a terminal inside the `apps/api` directory and run migrations and seed to get dummy data:
 
 ```bash
+export NODE_ENV=seed
 npx sequelize-cli db:migrate
 npx sequelize-cli db:seed:all
 ```
 
-This ensures you have some dummy data
-
----
-
 # Access the App
 
 Go to `http://localhost:3000` to view the dashboard
-
-
----
 
 # 🔥 Future Enhancements
 
@@ -86,8 +62,8 @@ Go to `http://localhost:3000` to view the dashboard
 - Real-time Kafka-driven incident ingestion
 - Better pagination for tables and charts
 - Integrate Admin UI panel for vulnerability management
-
----
+- Integrate state management in nextjs app
+- better interface
 
 # 📜 License
 

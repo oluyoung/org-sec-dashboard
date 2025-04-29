@@ -21,7 +21,7 @@ const PORT = 3306;
     ConfigModule.forRoot({ isGlobal: true }),
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost', // process.env.DB_HOST,
+      host: 'db', // process.env.DB_HOST,
       port: PORT, // process.env.DB_PORT,
       username: 'root', // process.env.DB_USERNAME,
       password: 'root', // process.env.DB_PASSWORD,

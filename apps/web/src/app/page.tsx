@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import { fetchClient, fetchSecurityPosture, fetchIncidents, fetchVulnerabilities, Client } from '@/lib/api';
-import { HStack, Skeleton, VStack } from "@chakra-ui/react";
+import { Box, HStack, Skeleton, VStack } from "@chakra-ui/react";
 import VulnerabilityReport from '@/components/VulnerabilityReport';
 
 const SummaryGrid = dynamic(() => import('@/components/SummaryGrid'));
@@ -36,13 +36,17 @@ export default function DashboardPage() {
       <Suspense fallback={<Skeleton height={100} />}>
         <SummaryGrid {...posture} />
       </Suspense>
-      <HStack gap="6" alignItems="flex-start">
-        <Suspense fallback={<Skeleton height={100} />}>
-          <VulnerabilityReport vulnerabilities={vulnerabilities || []} />
-        </Suspense>
-        <Suspense fallback={<Skeleton height={100} />}>
-          <IncidentsReport incidents={incidents || []} />
-        </Suspense>
+      <HStack width="100%" gap="12" alignItems="flex-start">
+        <Box width="50%">
+          <Suspense fallback={<Skeleton height={100} />}>
+            <VulnerabilityReport vulnerabilities={vulnerabilities || []} />
+          </Suspense>
+        </Box>
+        <Box width="50%">
+          <Suspense fallback={<Skeleton height={100} />}>
+            <IncidentsReport incidents={incidents || []} />
+          </Suspense>
+        </Box>
       </HStack>
     </VStack>
   );

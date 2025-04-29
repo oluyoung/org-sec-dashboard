@@ -9,7 +9,7 @@ function EmptyComponent({ message }: { message: string }) {
           <LuBox />
         </EmptyState.Indicator>
         <VStack textAlign="center">
-          <EmptyState.Title>{message}</EmptyState.Title>
+          <EmptyState.Description>{message}</EmptyState.Description>
         </VStack>
       </EmptyState.Content>
     </EmptyState.Root>

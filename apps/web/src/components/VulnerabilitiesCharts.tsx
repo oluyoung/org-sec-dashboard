@@ -1,11 +1,12 @@
 'use client';
 
+import { useMemo } from 'react';
 import { HStack } from '@chakra-ui/react';
 import { AgCharts } from 'ag-charts-react';
 import { AgChartOptions } from "ag-charts-community";
 
 import { Vulnerability } from '@/lib/api';
-import { useMemo } from 'react';
+import EmptyComponent from './EmptyComponent';
 
 interface VulnerabilitiesChartsProps {
   vulnerabilities?: Vulnerability[];
@@ -38,25 +39,39 @@ const AgBoxPie = ({ title, data }: { title: string, data: { name: string; value:
 }
 
 export default function VulnerabilitiesCharts({ vulnerabilities = [] }: VulnerabilitiesChartsProps) {
-  const counts = vulnerabilities.reduce((acc, vuln) => {
-    acc[`severity.${vuln.severity}`] = (acc[`severity.${vuln.severity}`] || 0) + 1;
-    acc[`status.${vuln.status}`] = (acc[`status.${vuln.status}`] || 0) + 1;
-    acc[`category.${vuln.category}`] = (acc[`category.${vuln.category}`] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const { severityData, statusData, categoryData } = useMemo(() => vulnerabilities.reduce(
+    (acc, vuln) => {
+      const severityIndex = acc.severityData.findIndex(item => item.name === vuln.severity);
+      if (severityIndex >= 0) {
+        acc.severityData[severityIndex].value += 1;
+      } else {
+        acc.severityData.push({ name: vuln.severity, value: 1 });
+      }
 
-  const prepareData = (prefix: string) => {
-    return Object.entries(counts)
-      .filter(([key]) => key.startsWith(prefix))
-      .map(([key, value]) => ({
-        name: key.replace(`${prefix}.`, '').replace(/-/g, ' '),
-        value,
-      }));
-  };
+      const statusIndex = acc.statusData.findIndex(item => item.name === vuln.status);
+      if (statusIndex >= 0) {
+        acc.statusData[statusIndex].value += 1;
+      } else {
+        acc.statusData.push({ name: vuln.status, value: 1 });
+      }
 
-  const severityData = prepareData('severity');
-  const statusData = prepareData('status');
-  const categoryData = prepareData('category');
+      const categoryIndex = acc.categoryData.findIndex(item => item.name === vuln.category);
+      if (categoryIndex >= 0) {
+        acc.categoryData[categoryIndex].value += 1;
+      } else {
+        acc.categoryData.push({ name: vuln.category, value: 1 });
+      }
+  
+      return acc;
+    },
+    {
+      severityData: [] as { name: string; value: number }[],
+      statusData: [] as { name: string; value: number }[],
+      categoryData: [] as { name: string; value: number }[],
+    }
+  ), [vulnerabilities]);
+
+  if (!vulnerabilities.length) return <EmptyComponent message='No vulnerabilities have been reported' />
 
   return (
     <HStack flexWrap="wrap">

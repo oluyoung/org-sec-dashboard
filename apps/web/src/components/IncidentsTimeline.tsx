@@ -1,8 +1,8 @@
 'use client';
-import { Box, Stack, Text, Timeline, VStack } from '@chakra-ui/react';
+import { Box, Stack, Text, Timeline, } from '@chakra-ui/react';
 import { useMemo } from 'react';
-import { LuBox } from 'react-icons/lu';
 import { Incident } from '@/lib/api';
+import EmptyComponent from './EmptyComponent';
 
 interface IncidentsTimelineProps {
   incidents: Incident[];
@@ -30,12 +30,7 @@ export default function IncidentsTimeline({ incidents = [] }: IncidentsTimelineP
   }), [incidents]);
 
   if (!incidents.length) {
-    return (
-      <VStack textAlign="center" fontWeight="medium">
-        <LuBox />
-        No incidents to show
-      </VStack>
-    );
+    return <EmptyComponent message='No incidents to show' />
   }
 
   const latest = {

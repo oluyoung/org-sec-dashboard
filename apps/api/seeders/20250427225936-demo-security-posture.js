@@ -4,6 +4,12 @@ const { faker } = require('@faker-js/faker');
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    const posturesLength = await queryInterface.sequelize.query(
+      `SELECT count(*) FROM SecurityPostures;`
+    )
+
+    if (posturesLength) return;
+
     const [clients] = await queryInterface.sequelize.query(
       `SELECT clientId FROM Clients LIMIT 1;`
     );
